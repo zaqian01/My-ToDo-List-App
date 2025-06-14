@@ -1,6 +1,6 @@
 # TaskMaster: Advanced To-Do List App
 
-![To-Do List App Screenshot](https://via.placeholder.com/1200x600/F0F0F0/333333?text=Screenshot+To-Do+List+App) A modern and responsive to-do list application designed to help you manage your daily tasks with ease. TaskMaster aims to be simple yet powerful, providing the core functionalities you need to stay organized and productive.
+ A modern and responsive to-do list application designed to help you manage your daily tasks with ease. TaskMaster aims to be simple yet powerful, providing the core functionalities you need to stay organized and productive.
 
 ## ✨ Features
 
