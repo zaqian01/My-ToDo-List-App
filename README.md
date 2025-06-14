@@ -21,7 +21,7 @@
 ## 🚀 Live Demo
 
 See the application in action here:
-[https://zaqian01.github.io/My-ToDo-List-App/](https://zaqian01.github.io/My-ToDo-List-App/)
+**[https://zaqian01.github.io/My-ToDo-List-App/](https://zaqian01.github.io/My-ToDo-List-App/)**
 
 ## ⚙️ How to Run Locally
 
