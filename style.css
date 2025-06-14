@@ -1,0 +1,456 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Quicksand:wght@400;500;700&display=swap');
+
+:root {
+    --bg-light: #F0F4F8; /* Soft, clean background */
+    --bg-dark: #A5D6A7; /* Greenish accent for backgrounds */
+    --card-bg: #FFFFFF; /* White card background */
+    --primary-color: #4CAF50; /* Fresh Green for primary actions */
+    --secondary-color: #8BC34A; /* Lighter Green for accents */
+    --text-dark: #37474F; /* Dark text for readability */
+    --text-light: #78909C; /* Lighter text for descriptions */
+    --accent-orange: #FFB74D; /* Orange for overdue/alerts */
+    --accent-red: #EF5350; /* Red for delete */
+    --border-color: #E0E0E0; /* Subtle border */
+    --box-shadow-light: 0 5px 15px rgba(0, 0, 0, 0.08); /* Soft shadow */
+    --box-shadow-heavy: 0 10px 25px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
+    --border-radius-main: 18px;
+    --border-radius-elements: 10px;
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Quicksand', sans-serif;
+}
+
+body {
+    font-family: var(--font-body);
+    background: linear-gradient(135deg, var(--bg-light), var(--bg-dark));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    box-sizing: border-box;
+    color: var(--text-dark);
+    padding: 20px; /* Add padding to body for overall spacing */
+}
+
+.container {
+    background-color: var(--card-bg);
+    padding: 35px 40px; /* Slightly more horizontal padding */
+    border-radius: var(--border-radius-main);
+    box-shadow: var(--box-shadow-heavy);
+    width: 90%;
+    max-width: 650px; /* Slightly wider container */
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transform: scale(0.95); /* Initial smaller scale for subtle animation */
+    animation: scaleIn 0.6s ease-out forwards;
+    border: 1px solid rgba(255, 255, 255, 0.8); /* Subtle white inner border */
+}
+
+@keyframes scaleIn {
+    to { transform: scale(1); }
+}
+
+/* No glowing effect this time for a cleaner look */
+.container::before {
+    content: none;
+}
+
+
+h1 {
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+    margin-bottom: 35px; /* More space below heading */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.8em; /* Larger, more impactful heading */
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+h1 .fas {
+    margin-right: 15px;
+    color: var(--secondary-color);
+    font-size: 1.1em; /* Icon slightly larger than text */
+}
+
+.input-section {
+    display: flex;
+    gap: 15px; /* More space between inputs */
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#taskInput, #dueDateInput {
+    flex-grow: 1;
+    padding: 14px 20px;
+    border: 2px solid var(--border-color); /* Thicker, softer border */
+    border-radius: var(--border-radius-elements);
+    font-size: 1.1em;
+    outline: none;
+    transition: all 0.3s ease;
+    min-width: 180px; /* Increased min-width */
+    font-family: var(--font-body);
+    color: var(--text-dark);
+}
+
+#taskInput::placeholder {
+    color: var(--text-light);
+}
+
+#taskInput:focus, #dueDateInput:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.2); /* Green focus shadow */
+}
+
+#dueDateInput {
+    flex-shrink: 0; /* Prevents date input from shrinking too much */
+}
+
+#addTaskBtn {
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color)); /* Horizontal gradient */
+    color: white;
+    border: none;
+    padding: 14px 28px; /* Larger padding for button */
+    border-radius: var(--border-radius-elements);
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* More space for icon */
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 15px rgba(76, 175, 80, 0.3); /* Green button shadow */
+}
+
+#addTaskBtn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 9px 20px rgba(76, 175, 80, 0.4);
+}
+
+.filters {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 12px; /* More space between filter buttons */
+    flex-wrap: wrap;
+}
+
+.filters button {
+    background-color: var(--border-color);
+    border: none;
+    padding: 10px 20px; /* Larger padding */
+    border-radius: 25px; /* More rounded pill shape */
+    cursor: pointer;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    color: var(--text-light);
+    font-weight: 600;
+}
+
+.filters button:hover {
+    background-color: #D0D0D0;
+    color: var(--text-dark);
+}
+
+.filters button.active {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    box-shadow: 0 4px 10px rgba(76, 175, 80, 0.4);
+}
+
+#taskList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#taskList li {
+    background-color: var(--card-bg); /* White background for list items */
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-elements);
+    margin-bottom: 12px;
+    padding: 18px 25px; /* More padding */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.15em; /* Slightly larger font */
+    color: var(--text-dark);
+    transition: all 0.4s ease;
+    position: relative;
+    opacity: 1;
+    transform: translateX(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Subtle shadow on items */
+}
+
+/* Hover effect on list items */
+#taskList li:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Animations */
+#taskList li.adding {
+    animation: fadeInSlideIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; /* Smoother animation */
+}
+
+@keyframes fadeInSlideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#taskList li.removing {
+    animation: fadeOutSlideOut 0.4s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards;
+}
+
+@keyframes fadeOutSlideOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+        max-height: 200px;
+        padding: 18px 25px;
+        margin-bottom: 12px;
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-50px);
+        max-height: 0;
+        padding: 0 25px; /* Adjusted padding for smoother collapse */
+        margin-bottom: 0;
+        overflow: hidden;
+    }
+}
+
+#taskList li.completed {
+    background-color: #E8F5E9; /* Very light green for completed */
+    text-decoration: line-through;
+    color: var(--text-light);
+    border-color: #C8E6C9; /* Lighter border for completed */
+    opacity: 0.8; /* Slightly faded */
+}
+
+#taskList li .task-content {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    text-align: left;
+    flex-wrap: wrap; /* Allow content to wrap */
+    gap: 10px; /* Gap between checkbox, text, date */
+}
+
+#taskList li .task-text {
+    flex-grow: 1;
+    word-break: break-word;
+    font-weight: 600;
+}
+
+#taskList li .due-date {
+    font-size: 0.9em;
+    color: var(--text-light);
+    background-color: var(--border-color);
+    padding: 5px 10px;
+    border-radius: 8px;
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+#taskList li.completed .due-date {
+    background-color: #DCE7D8; /* Lighter date background for completed */
+    color: #90A4AE;
+}
+
+#taskList li .due-date.overdue {
+    background-color: var(--accent-orange);
+    color: white;
+    font-weight: 700;
+}
+
+#taskList li input[type="checkbox"] {
+    appearance: none;
+    width: 25px; /* Larger checkbox */
+    height: 25px;
+    border: 2px solid var(--primary-color); /* Green border for checkbox */
+    border-radius: 6px; /* Slightly rounded corners for checkbox */
+    margin-right: 15px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    background-color: #F8F8F8; /* Light background for unchecked box */
+}
+
+#taskList li input[type="checkbox"]:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+#taskList li input[type="checkbox"]:checked::after {
+    content: '\f00c'; /* Font Awesome check icon */
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    color: white;
+    font-size: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#taskList li .task-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0; /* Prevents actions from shrinking */
+}
+
+#taskList li button {
+    background-color: var(--accent-red);
+    color: white;
+    border: none;
+    padding: 10px 15px; /* Larger padding for delete button */
+    border-radius: var(--border-radius-elements);
+    cursor: pointer;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    min-width: 45px; /* Ensure button has minimum size */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#taskList li button .fas {
+    font-size: 1em;
+}
+
+#taskList li button:hover {
+    background-color: #C62828;
+    transform: translateY(-2px);
+}
+
+.no-tasks-message {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f3f9f3; /* Light green info background */
+    border: 1px solid #d4edda;
+    border-radius: var(--border-radius-elements);
+    color: var(--primary-color);
+    font-size: 1.1em;
+    font-weight: 500;
+    text-align: center;
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* Responsiveness */
+@media (max-width: 600px) {
+    .container {
+        padding: 25px 20px;
+        max-width: 100%; /* Allow container to take full width */
+    }
+    h1 {
+        font-size: 2.2em;
+        margin-bottom: 25px;
+    }
+    h1 .fas {
+        margin-right: 10px;
+    }
+    .input-section {
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 25px;
+    }
+    #taskInput, #dueDateInput, #addTaskBtn {
+        width: 100%;
+        min-width: unset; /* Remove min-width for full flexibility */
+    }
+    #addTaskBtn {
+        padding: 12px 20px;
+        font-size: 1em;
+    }
+    .filters {
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 8px; /* Reduce gap for filters */
+        margin-bottom: 25px;
+    }
+    .filters button {
+        padding: 8px 15px;
+        font-size: 0.9em;
+        flex-grow: 1; /* Allow buttons to grow */
+    }
+    #taskList li {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+        gap: 8px; /* Reduce gap inside list item */
+        font-size: 1.05em;
+    }
+    #taskList li .task-content {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        gap: 5px; /* Reduce gap inside task content */
+    }
+    #taskList li .task-text {
+        margin-right: 0;
+        margin-bottom: 5px;
+    }
+    #taskList li input[type="checkbox"] {
+        margin-bottom: 10px;
+        width: 22px;
+        height: 22px;
+    }
+    #taskList li .due-date {
+        margin-left: 0; /* Remove left margin for better stacking */
+        width: fit-content; /* Make date badge fit content */
+    }
+    #taskList li .task-actions {
+        width: 100%;
+        justify-content: flex-end; /* Keep delete button to the right */
+        margin-top: 10px; /* Add some space above actions */
+    }
+    .no-tasks-message {
+        font-size: 1em;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 400px) {
+    .container {
+        padding: 20px 15px;
+    }
+    h1 {
+        font-size: 2em;
+    }
+    #taskInput, #dueDateInput {
+        padding: 12px 15px;
+        font-size: 1em;
+    }
+    #addTaskBtn {
+        padding: 10px 15px;
+        font-size: 0.95em;
+    }
+    .filters button {
+        padding: 7px 12px;
+        font-size: 0.85em;
+    }
+    #taskList li {
+        padding: 12px;
+        font-size: 1em;
+    }
+    #taskList li input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+    }
+    #taskList li input[type="checkbox"]:checked::after {
+        font-size: 14px;
+    }
+    #taskList li button {
+        padding: 8px 12px;
+        min-width: 35px;
+    }
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Effortless To-Do: Organize Your Day</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="https://img.icons8.com/plasticine/100/checklist.png" type="image/png"> </head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-clipboard-check"></i> Effortless To-Do</h1>
+
+        <div class="input-section">
+            <input type="text" id="taskInput" placeholder="What needs to be done today?" aria-label="New task description">
+            <input type="date" id="dueDateInput" aria-label="Due date for task">
+            <button id="addTaskBtn" aria-label="Add new task">Add Task <i class="fas fa-plus"></i></button>
+        </div>
+
+        <div class="filters">
+            <button id="filterAll" class="active" aria-pressed="true">All</button>
+            <button id="filterCompleted" aria-pressed="false">Completed</button>
+            <button id="filterPending" aria-pressed="false">Pending</button>
+        </div>
+
+        <ul id="taskList">
+            </ul>
+
+        <div id="noTasksMessage" class="no-tasks-message" style="display: none;">
+            Looks like your to-do list is empty! Add a new task above.
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
